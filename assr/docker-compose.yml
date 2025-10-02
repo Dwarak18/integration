@@ -1,0 +1,20 @@
+# Docker Compose for RAG Service and Qdrant
+version: '3.8'
+services:
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+  rag-service:
+    build: ./assr
+    ports:
+      - "8000:8000"
+    depends_on:
+      - qdrant
+    volumes:
+       - ./assr:/app
+volumes:
+  qdrant_data:
+  rag_logs:
