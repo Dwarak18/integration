@@ -29,13 +29,17 @@ logging.basicConfig(level=logging.INFO)
 ADMIN_KEY = "supersecretadminkey"
 
 # Route map - map path prefixes to backend base URLs
-# Add /auth, /users, /orders etc.
+# Use environment variables for Docker compatibility
+APP_BACKEND_URL = os.getenv("APP_BACKEND_URL", "http://127.0.0.1:9001")
+SECURITY_BACKEND_URL = os.getenv("SECURITY_BACKEND_URL", "http://127.0.0.1:9000")
+
 ROUTE_MAP = {
-    "/auth": "http://127.0.0.1:9100",
-    "/users": "http://127.0.0.1:9200",
-    "/orders": "http://127.0.0.1:9300",
+    "/auth": APP_BACKEND_URL,
+    "/users": APP_BACKEND_URL,
+    "/orders": APP_BACKEND_URL,
+    "/api": APP_BACKEND_URL,
 }
-DEFAULT_BACKEND = "http://127.0.0.1:9000"  # Security backend with RAG integration
+DEFAULT_BACKEND = SECURITY_BACKEND_URL  # Security backend with RAG integration
 
 # httpx client timeout
 CLIENT_TIMEOUT = httpx.Timeout(10.0, connect=5.0)
@@ -231,7 +235,8 @@ async def payload_inspection_middleware(request: Request, call_next):
         return JSONResponse(status_code=403, content={"detail": f"Blocked by Regex rule(s): {', '.join(triggered)}"})
 
     # --- RAG Service Integration ---
-    rag_url = "http://localhost:8000/check_payload"  # Adjust if RAG service runs elsewhere
+    rag_service_url = os.getenv("RAG_SERVICE_URL", "http://localhost:8000")
+    rag_url = f"{rag_service_url}/check_payload"
     try:
         async with httpx.AsyncClient(timeout=CLIENT_TIMEOUT) as rag_client:
             rag_resp = await rag_client.post(rag_url, json={"payload": full_payload})
