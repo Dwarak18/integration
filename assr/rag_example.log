@@ -1,0 +1,923 @@
+2025-09-16 20:10:44,912 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:10:44,913 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:10:48,176 - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-09-16 20:11:27,848 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-16 20:11:34,529 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:11:38,730 - INFO - Created new collection: cybersecurity_knowledge
+2025-09-16 20:11:38,734 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:11:38,736 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:11:42,653 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:11:42,653 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:11:46,559 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:11:46,561 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:11:50,630 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:11:50,630 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:11:54,591 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:11:54,591 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:11:58,377 - INFO - Use pytorch device_name: cpu
+2025-09-16 20:11:58,378 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-16 20:12:02,399 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-16 20:12:02,400 - INFO - Initializing RAG Pipeline...
+2025-09-16 20:12:02,408 - INFO - No existing data found - performing full data ingestion
+2025-09-16 20:12:02,408 - INFO - Performing full reingestion - resetting vector database...
+2025-09-16 20:12:02,421 - INFO - Deleted collection: cybersecurity_knowledge
+2025-09-16 20:12:02,468 - INFO - Reset collection: cybersecurity_knowledge
+2025-09-16 20:12:02,469 - INFO - Processing data from source files...
+2025-09-16 20:12:02,469 - INFO - Starting comprehensive data processing...
+2025-09-16 20:12:02,478 - ERROR - Error processing MITRE dataset: Error tokenizing data. C error: Expected 1 fields in line 7, saw 2
+
+2025-09-16 20:12:02,486 - ERROR - Error processing payload dataset: Error tokenizing data. C error: Expected 1 fields in line 363, saw 2
+
+2025-09-16 20:12:02,491 - INFO - Extracted knowledge from 127 agent chunks
+2025-09-16 20:12:02,492 - INFO - Completed processing. Total entries: 127
+2025-09-16 20:12:02,492 - INFO - Starting data ingestion into vector database...
+2025-09-16 20:12:02,492 - INFO - Ingesting 127 items of type: agent_knowledge
+2025-09-16 20:12:03,058 - INFO - Added 50 documents to collection
+2025-09-16 20:12:03,445 - INFO - Added 50 documents to collection
+2025-09-16 20:12:03,637 - INFO - Added 27 documents to collection
+2025-09-16 20:12:03,637 - INFO - Ingestion completed. Stats: {'mitre_data': 0, 'payload_data': 0, 'agent_knowledge': 127, 'total': 127, 'errors': 0}
+2025-09-16 20:12:03,640 - INFO - Saved ingestion metadata to ingestion_metadata.json
+2025-09-16 20:12:03,641 - INFO - Ingested 127 documents
+2025-09-16 20:12:03,649 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-16 20:12:03,721 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-16 20:12:03,722 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-16 20:12:03,771 - INFO - Pipeline initialized in 1.37 seconds
+2025-09-16 20:12:03,776 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-16 20:12:03,778 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-16 20:12:03,820 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-16 20:12:03,863 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-16 20:12:03,904 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-16 20:12:03,946 - INFO - Knowledge base query completed in 0.17 seconds
+2025-09-16 20:12:03,947 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-16 20:12:03,948 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-16 20:12:03,991 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-16 20:12:04,038 - INFO - Knowledge base query completed in 0.09 seconds
+2025-09-16 20:12:04,039 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-16 20:12:04,039 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-16 20:12:04,086 - INFO - Knowledge base query completed in 0.05 seconds
+2025-09-16 20:12:04,088 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-16 20:12:04,088 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-16 20:12:04,128 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-16 20:12:04,168 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-16 20:12:04,209 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-16 20:12:04,250 - INFO - Knowledge base query completed in 0.16 seconds
+2025-09-16 20:12:04,251 - INFO - Querying knowledge base: command injection protection...
+2025-09-16 20:12:04,252 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-16 20:12:04,294 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-16 20:12:04,336 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-16 20:12:04,381 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-16 20:12:04,419 - INFO - Knowledge base query completed in 0.17 seconds
+2025-09-16 20:12:04,422 - INFO - Analyzing security incident
+2025-09-16 20:12:04,422 - INFO - Analyzing threat with 3 indicators
+2025-09-16 20:12:04,423 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-16 20:12:04,457 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-16 20:12:04,492 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-16 20:12:04,525 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-16 20:12:04,555 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-16 20:12:04,556 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-16 20:12:04,594 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-16 20:12:04,594 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-16 20:12:04,636 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-16 20:12:04,636 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-16 20:12:04,680 - INFO - Investigating attack pattern with 3 indicators
+2025-09-16 20:12:04,681 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-16 20:12:04,721 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-16 20:12:04,722 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-16 20:12:04,766 - INFO - Incident analysis completed in 0.34 seconds
+2025-09-16 20:12:04,768 - INFO - Analyzing security incident
+2025-09-16 20:12:04,769 - INFO - Analyzing threat with 3 indicators
+2025-09-16 20:12:04,770 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-16 20:12:04,813 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-16 20:12:04,857 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-16 20:12:04,903 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-16 20:12:04,948 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-16 20:12:04,948 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-16 20:12:04,995 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-16 20:12:04,996 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-16 20:12:05,041 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-16 20:12:05,042 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-16 20:12:05,097 - INFO - Investigating attack pattern with 3 indicators
+2025-09-16 20:12:05,097 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-16 20:12:05,139 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-16 20:12:05,139 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-16 20:12:05,186 - INFO - Incident analysis completed in 0.42 seconds
+2025-09-16 20:12:05,189 - INFO - Analyzing security incident
+2025-09-16 20:12:05,189 - INFO - Analyzing threat with 3 indicators
+2025-09-16 20:12:05,189 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-16 20:12:05,229 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-16 20:12:05,269 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-16 20:12:05,311 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-16 20:12:05,354 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-16 20:12:05,354 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-16 20:12:05,412 - INFO - Analyzing payload: | whoami...
+2025-09-16 20:12:05,413 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-16 20:12:05,450 - INFO - Analyzing payload: && rm -rf /...
+2025-09-16 20:12:05,451 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-16 20:12:05,487 - INFO - Investigating attack pattern with 3 indicators
+2025-09-16 20:12:05,487 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-16 20:12:05,525 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-16 20:12:05,525 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-16 20:12:05,565 - INFO - Incident analysis completed in 0.38 seconds
+2025-09-16 20:12:05,566 - INFO - Analyzing batch of 8 payloads
+2025-09-16 20:12:05,567 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-16 20:12:05,567 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-16 20:12:05,607 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-16 20:12:05,608 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-16 20:12:05,650 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-16 20:12:05,651 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-16 20:12:05,687 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-16 20:12:05,687 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-16 20:12:05,730 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-16 20:12:05,730 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-16 20:12:05,774 - INFO - Analyzing payload: {{7*7}}...
+2025-09-16 20:12:05,774 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-16 20:12:05,813 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-16 20:12:05,813 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-16 20:12:05,856 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-16 20:12:05,857 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-16 20:12:05,910 - INFO - Batch payload analysis completed in 0.34 seconds
+2025-09-16 20:12:05,919 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-16 20:12:05,958 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-16 20:12:05,959 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:27:16,464 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:16,465 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:21,317 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-20 19:27:21,566 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:25,481 - INFO - Loaded existing collection: cybersecurity_knowledge
+2025-09-20 19:27:25,500 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:25,500 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:30,079 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:30,084 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:35,198 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:35,198 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:40,019 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:40,019 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:45,138 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:45,145 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:49,329 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:27:49,333 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:27:53,328 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-20 19:27:53,336 - INFO - Initializing RAG Pipeline...
+2025-09-20 19:27:53,393 - INFO - Found existing collection with 127 documents
+2025-09-20 19:27:53,393 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-20 19:27:53,614 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:27:53,630 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:27:53,694 - INFO - Pipeline initialized in 0.36 seconds
+2025-09-20 19:27:53,704 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-20 19:27:53,709 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-20 19:27:53,765 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-20 19:27:53,812 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-20 19:27:53,854 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-20 19:27:53,900 - INFO - Knowledge base query completed in 0.20 seconds
+2025-09-20 19:27:53,900 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-20 19:27:53,904 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-20 19:27:53,949 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-20 19:27:53,992 - INFO - Knowledge base query completed in 0.09 seconds
+2025-09-20 19:27:53,992 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-20 19:27:53,992 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-20 19:27:54,037 - INFO - Knowledge base query completed in 0.04 seconds
+2025-09-20 19:27:54,037 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-20 19:27:54,037 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-20 19:27:54,073 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-20 19:27:54,120 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-20 19:27:54,154 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-20 19:27:54,199 - INFO - Knowledge base query completed in 0.16 seconds
+2025-09-20 19:27:54,199 - INFO - Querying knowledge base: command injection protection...
+2025-09-20 19:27:54,199 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-20 19:27:54,242 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-20 19:27:54,279 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-20 19:27:54,318 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-20 19:27:54,357 - INFO - Knowledge base query completed in 0.16 seconds
+2025-09-20 19:27:54,357 - INFO - Analyzing security incident
+2025-09-20 19:27:54,357 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:27:54,357 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-20 19:27:54,412 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-20 19:27:54,452 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-20 19:27:54,494 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-20 19:27:54,541 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-20 19:27:54,541 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-20 19:27:54,584 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-20 19:27:54,584 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-20 19:27:54,636 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-20 19:27:54,636 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-20 19:27:54,682 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:27:54,682 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-20 19:27:54,731 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-20 19:27:54,731 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-20 19:27:54,779 - INFO - Incident analysis completed in 0.42 seconds
+2025-09-20 19:27:54,780 - INFO - Analyzing security incident
+2025-09-20 19:27:54,780 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:27:54,780 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:27:54,827 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-20 19:27:54,868 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-20 19:27:54,900 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-20 19:27:54,935 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-20 19:27:54,935 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-20 19:27:54,981 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-20 19:27:54,981 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-20 19:27:55,022 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-20 19:27:55,022 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-20 19:27:55,064 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:27:55,064 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-20 19:27:55,103 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-20 19:27:55,103 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:27:55,141 - INFO - Incident analysis completed in 0.36 seconds
+2025-09-20 19:27:55,141 - INFO - Analyzing security incident
+2025-09-20 19:27:55,141 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:27:55,141 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:27:55,186 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:27:55,221 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:27:55,256 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:27:55,300 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:27:55,300 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:27:55,339 - INFO - Analyzing payload: | whoami...
+2025-09-20 19:27:55,339 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:27:55,381 - INFO - Analyzing payload: && rm -rf /...
+2025-09-20 19:27:55,381 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:27:55,422 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:27:55,422 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-20 19:27:55,467 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-20 19:27:55,467 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:27:55,500 - INFO - Incident analysis completed in 0.36 seconds
+2025-09-20 19:27:55,509 - INFO - Analyzing batch of 8 payloads
+2025-09-20 19:27:55,509 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-20 19:27:55,510 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-20 19:27:55,553 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-20 19:27:55,553 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-20 19:27:55,593 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:27:55,593 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-20 19:27:55,627 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-20 19:27:55,627 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-20 19:27:55,667 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-20 19:27:55,667 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-20 19:27:55,747 - INFO - Analyzing payload: {{7*7}}...
+2025-09-20 19:27:55,749 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-20 19:27:55,788 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-20 19:27:55,788 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-20 19:27:55,831 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-20 19:27:55,831 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-20 19:27:55,863 - INFO - Batch payload analysis completed in 0.35 seconds
+2025-09-20 19:27:55,863 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-20 19:27:55,901 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:27:55,901 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:36:47,415 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:36:47,415 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:36:52,045 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-20 19:36:52,231 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:36:56,251 - INFO - Loaded existing collection: cybersecurity_knowledge
+2025-09-20 19:36:56,255 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:36:56,257 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:37:00,654 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:37:00,654 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:37:04,852 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:37:04,852 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:37:08,850 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:37:08,853 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:37:14,993 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:37:14,993 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:37:19,188 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:37:19,188 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:37:23,273 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-20 19:37:23,280 - INFO - Initializing RAG Pipeline...
+2025-09-20 19:37:23,316 - INFO - Found existing collection with 127 documents
+2025-09-20 19:37:23,318 - INFO - Vector DB accessible with 127 documents
+2025-09-20 19:37:23,320 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-20 19:37:23,441 - INFO - Sample query returned 0 results
+2025-09-20 19:37:23,441 - WARNING - No documents retrieved for test query
+2025-09-20 19:37:23,441 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:37:23,441 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:37:23,498 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 19:37:23,498 - INFO - Pipeline health check completed: 2/4 components working
+2025-09-20 19:37:23,501 - INFO - Pipeline initialized in 0.22 seconds
+2025-09-20 19:37:23,505 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-20 19:37:23,505 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-20 19:37:23,552 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-20 19:37:23,603 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-20 19:37:23,645 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-20 19:37:23,693 - INFO - Knowledge base query completed in 0.18 seconds
+2025-09-20 19:37:23,693 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-20 19:37:23,693 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-20 19:37:23,735 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-20 19:37:23,781 - INFO - Knowledge base query completed in 0.09 seconds
+2025-09-20 19:37:23,781 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-20 19:37:23,781 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-20 19:37:23,822 - INFO - Knowledge base query completed in 0.04 seconds
+2025-09-20 19:37:23,829 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-20 19:37:23,829 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-20 19:37:23,866 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-20 19:37:23,914 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-20 19:37:23,957 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-20 19:37:23,997 - INFO - Knowledge base query completed in 0.17 seconds
+2025-09-20 19:37:23,997 - INFO - Querying knowledge base: command injection protection...
+2025-09-20 19:37:24,002 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-20 19:37:24,039 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-20 19:37:24,071 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-20 19:37:24,118 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-20 19:37:24,160 - INFO - Knowledge base query completed in 0.16 seconds
+2025-09-20 19:37:24,165 - INFO - Analyzing security incident
+2025-09-20 19:37:24,165 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:37:24,165 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-20 19:37:24,204 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-20 19:37:24,244 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-20 19:37:24,292 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-20 19:37:24,333 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-20 19:37:24,338 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-20 19:37:24,379 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-20 19:37:24,379 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-20 19:37:24,428 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-20 19:37:24,428 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-20 19:37:24,473 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:37:24,473 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-20 19:37:24,515 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-20 19:37:24,515 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-20 19:37:24,560 - INFO - Incident analysis completed in 0.39 seconds
+2025-09-20 19:37:24,565 - INFO - Analyzing security incident
+2025-09-20 19:37:24,565 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:37:24,565 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-20 19:37:24,607 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-20 19:37:24,647 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-20 19:37:24,675 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:37:24,715 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-20 19:37:24,720 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-20 19:37:24,756 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-20 19:37:24,756 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-20 19:37:24,793 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-20 19:37:24,793 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-20 19:37:24,831 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:37:24,831 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-20 19:37:24,873 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-20 19:37:24,878 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:37:24,920 - INFO - Incident analysis completed in 0.36 seconds
+2025-09-20 19:37:24,922 - INFO - Analyzing security incident
+2025-09-20 19:37:24,924 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:37:24,924 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:37:24,958 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:37:24,989 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:37:25,031 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:37:25,068 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:37:25,068 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:37:25,104 - INFO - Analyzing payload: | whoami...
+2025-09-20 19:37:25,112 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:37:25,147 - INFO - Analyzing payload: && rm -rf /...
+2025-09-20 19:37:25,147 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:37:25,187 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:37:25,187 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-20 19:37:25,226 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-20 19:37:25,226 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:37:25,265 - INFO - Incident analysis completed in 0.34 seconds
+2025-09-20 19:37:25,268 - INFO - Analyzing batch of 8 payloads
+2025-09-20 19:37:25,268 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-20 19:37:25,268 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-20 19:37:25,306 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-20 19:37:25,306 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-20 19:37:25,336 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:37:25,336 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-20 19:37:25,383 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-20 19:37:25,383 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-20 19:37:25,417 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-20 19:37:25,417 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-20 19:37:25,464 - INFO - Analyzing payload: {{7*7}}...
+2025-09-20 19:37:25,466 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-20 19:37:25,508 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-20 19:37:25,508 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-20 19:37:25,548 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-20 19:37:25,548 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-20 19:37:25,590 - INFO - Batch payload analysis completed in 0.32 seconds
+2025-09-20 19:37:25,601 - INFO - Vector DB accessible with 127 documents
+2025-09-20 19:37:25,601 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-20 19:37:25,648 - INFO - Sample query returned 0 results
+2025-09-20 19:37:25,648 - WARNING - No documents retrieved for test query
+2025-09-20 19:37:25,648 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:37:25,648 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:37:25,688 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 19:37:25,688 - INFO - Pipeline health check completed: 2/4 components working
+2025-09-20 19:49:42,293 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:49:42,293 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:50:04,759 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-20 19:50:04,868 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:50:19,814 - INFO - Loaded existing collection: cybersecurity_knowledge
+2025-09-20 19:50:19,821 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:50:19,821 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:50:43,474 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:50:43,474 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:51:00,093 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:51:00,093 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:51:22,353 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:51:22,360 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:51:58,006 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:51:58,006 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:52:01,851 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:52:01,851 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:52:01,954 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-20 19:52:01,954 - INFO - Initializing RAG Pipeline...
+2025-09-20 19:52:01,975 - INFO - Found existing collection with 127 documents
+2025-09-20 19:52:01,976 - INFO - Vector DB accessible with 127 documents
+2025-09-20 19:52:01,976 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-20 19:52:02,056 - INFO - Sample query returned 0 results
+2025-09-20 19:52:02,056 - WARNING - No documents retrieved for test query
+2025-09-20 19:52:02,056 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:52:02,057 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:52:02,122 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 19:52:02,123 - INFO - Pipeline health check completed: 2/4 components working
+2025-09-20 19:52:02,125 - INFO - Pipeline initialized in 0.17 seconds
+2025-09-20 19:52:02,129 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-20 19:52:02,129 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-20 19:52:02,161 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-20 19:52:02,188 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-20 19:52:02,210 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-20 19:52:02,236 - INFO - Knowledge base query completed in 0.11 seconds
+2025-09-20 19:52:02,237 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-20 19:52:02,238 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-20 19:52:02,259 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-20 19:52:02,278 - INFO - Knowledge base query completed in 0.04 seconds
+2025-09-20 19:52:02,279 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-20 19:52:02,279 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-20 19:52:02,294 - INFO - Knowledge base query completed in 0.02 seconds
+2025-09-20 19:52:02,295 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-20 19:52:02,295 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-20 19:52:02,312 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-20 19:52:02,327 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-20 19:52:02,343 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-20 19:52:02,359 - INFO - Knowledge base query completed in 0.06 seconds
+2025-09-20 19:52:02,360 - INFO - Querying knowledge base: command injection protection...
+2025-09-20 19:52:02,360 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-20 19:52:02,378 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-20 19:52:02,386 - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020B29616090>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")': /batch/
+2025-09-20 19:52:02,387 - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020B2BBDA810>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")': /batch/
+2025-09-20 19:52:02,396 - INFO - Backing off send_request(...) for 0.2s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020B2BBDB250>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+2025-09-20 19:52:02,400 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-20 19:52:02,416 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-20 19:52:02,432 - INFO - Knowledge base query completed in 0.07 seconds
+2025-09-20 19:52:02,433 - INFO - Analyzing security incident
+2025-09-20 19:52:02,433 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:52:02,433 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-20 19:52:02,451 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-20 19:52:02,470 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-20 19:52:02,489 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-20 19:52:02,505 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-20 19:52:02,506 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-20 19:52:02,524 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-20 19:52:02,525 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-20 19:52:02,545 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-20 19:52:02,546 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-20 19:52:02,564 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:52:02,564 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-20 19:52:02,580 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-20 19:52:02,580 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-20 19:52:02,597 - INFO - Incident analysis completed in 0.16 seconds
+2025-09-20 19:52:02,597 - INFO - Analyzing security incident
+2025-09-20 19:52:02,597 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:52:02,597 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:52:02,608 - WARNING - Retrying (Retry(total=1, connect=1, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020B2BBE2E10>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")': /batch/
+2025-09-20 19:52:02,609 - WARNING - Retrying (Retry(total=0, connect=0, read=2, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020B2BBE3250>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")': /batch/
+2025-09-20 19:52:02,613 - INFO - Backing off send_request(...) for 1.4s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020B2BBE3150>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+2025-09-20 19:52:02,618 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-20 19:52:02,638 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-20 19:52:02,655 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-20 19:52:02,674 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-20 19:52:02,674 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-20 19:52:02,704 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-20 19:52:02,704 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-20 19:52:02,726 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-20 19:52:02,727 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-20 19:52:02,759 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:52:02,759 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-20 19:52:02,783 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-20 19:52:02,784 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:52:02,809 - INFO - Incident analysis completed in 0.21 seconds
+2025-09-20 19:52:02,811 - INFO - Analyzing security incident
+2025-09-20 19:52:02,811 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:52:02,812 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:52:02,835 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:52:02,873 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:52:02,900 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:52:02,924 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:52:02,925 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:52:02,948 - INFO - Analyzing payload: | whoami...
+2025-09-20 19:52:02,948 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:52:02,971 - INFO - Analyzing payload: && rm -rf /...
+2025-09-20 19:52:02,972 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:52:02,991 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:52:02,991 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-20 19:52:03,080 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-20 19:52:03,082 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:52:03,148 - INFO - Incident analysis completed in 0.34 seconds
+2025-09-20 19:52:03,150 - INFO - Analyzing batch of 8 payloads
+2025-09-20 19:52:03,150 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-20 19:52:03,150 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-20 19:52:03,174 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-20 19:52:03,174 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-20 19:52:03,196 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:52:03,197 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-20 19:52:03,216 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-20 19:52:03,216 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-20 19:52:03,235 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-20 19:52:03,236 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-20 19:52:03,257 - INFO - Analyzing payload: {{7*7}}...
+2025-09-20 19:52:03,257 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-20 19:52:03,281 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-20 19:52:03,281 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-20 19:52:03,307 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-20 19:52:03,307 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-20 19:52:03,331 - INFO - Batch payload analysis completed in 0.18 seconds
+2025-09-20 19:52:03,334 - INFO - Vector DB accessible with 127 documents
+2025-09-20 19:52:03,334 - INFO - Processing query: 'SQL injection attack' as payload_identification
+2025-09-20 19:52:03,356 - INFO - Sample query returned 0 results
+2025-09-20 19:52:03,356 - WARNING - No documents retrieved for test query
+2025-09-20 19:52:03,356 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:52:03,356 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:52:03,374 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 19:52:03,374 - INFO - Pipeline health check completed: 2/4 components working
+2025-09-20 19:58:00,859 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:00,859 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:06,441 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-20 19:58:06,528 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:12,066 - INFO - Loaded existing collection: cybersecurity_knowledge
+2025-09-20 19:58:12,068 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:12,068 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:17,176 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:17,176 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:25,880 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:25,890 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:31,153 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:31,155 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:35,729 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:35,729 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:39,860 - INFO - Use pytorch device_name: cpu
+2025-09-20 19:58:39,860 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 19:58:48,300 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-20 19:58:48,300 - INFO - Initializing RAG Pipeline...
+2025-09-20 19:58:48,333 - INFO - Found existing collection with 127 documents
+2025-09-20 19:58:48,335 - INFO - Vector DB accessible with 127 documents
+2025-09-20 19:58:48,335 - INFO - Processing query: 'attack' as threat_analysis
+2025-09-20 19:58:48,458 - INFO - Sample query returned 3 results
+2025-09-20 19:58:48,458 - INFO - Data retrieval working: True (best similarity: 0.761)
+2025-09-20 19:58:48,458 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:58:48,458 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:58:48,485 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 19:58:48,485 - INFO - Pipeline health check completed: 4/4 components working
+2025-09-20 19:58:48,485 - INFO - Pipeline initialized in 0.18 seconds
+2025-09-20 19:58:48,485 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-20 19:58:48,485 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-20 19:58:48,510 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-20 19:58:48,533 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-20 19:58:48,593 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-20 19:58:48,615 - INFO - Knowledge base query completed in 0.13 seconds
+2025-09-20 19:58:48,615 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-20 19:58:48,615 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-20 19:58:48,636 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-20 19:58:48,665 - INFO - Knowledge base query completed in 0.05 seconds
+2025-09-20 19:58:48,665 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-20 19:58:48,665 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-20 19:58:48,690 - INFO - Knowledge base query completed in 0.02 seconds
+2025-09-20 19:58:48,690 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-20 19:58:48,690 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-20 19:58:48,722 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-20 19:58:48,750 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-20 19:58:48,769 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-20 19:58:48,801 - INFO - Knowledge base query completed in 0.11 seconds
+2025-09-20 19:58:48,801 - INFO - Querying knowledge base: command injection protection...
+2025-09-20 19:58:48,801 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-20 19:58:48,853 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-20 19:58:48,880 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-20 19:58:48,912 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-20 19:58:48,940 - INFO - Knowledge base query completed in 0.14 seconds
+2025-09-20 19:58:48,940 - INFO - Analyzing security incident
+2025-09-20 19:58:48,940 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:58:48,940 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-20 19:58:48,970 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-20 19:58:48,991 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-20 19:58:49,043 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-20 19:58:49,070 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-20 19:58:49,070 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-20 19:58:49,093 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-20 19:58:49,093 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-20 19:58:49,118 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-20 19:58:49,118 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-20 19:58:49,133 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:58:49,133 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-20 19:58:49,153 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-20 19:58:49,153 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-20 19:58:49,174 - INFO - Incident analysis completed in 0.23 seconds
+2025-09-20 19:58:49,174 - INFO - Analyzing security incident
+2025-09-20 19:58:49,174 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:58:49,174 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-20 19:58:49,182 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:58:49,206 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-20 19:58:49,219 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-20 19:58:49,227 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-20 19:58:49,227 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-20 19:58:49,247 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-20 19:58:49,247 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-20 19:58:49,258 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-20 19:58:49,258 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-20 19:58:49,274 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:58:49,274 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-20 19:58:49,290 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-20 19:58:49,290 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 19:58:49,306 - INFO - Incident analysis completed in 0.13 seconds
+2025-09-20 19:58:49,306 - INFO - Analyzing security incident
+2025-09-20 19:58:49,306 - INFO - Analyzing threat with 3 indicators
+2025-09-20 19:58:49,306 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:58:49,322 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:58:49,338 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:58:49,358 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:58:49,384 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:58:49,384 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:58:49,405 - INFO - Analyzing payload: | whoami...
+2025-09-20 19:58:49,405 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:58:49,422 - INFO - Analyzing payload: && rm -rf /...
+2025-09-20 19:58:49,422 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-20 19:58:49,432 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 19:58:49,432 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-20 19:58:49,452 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-20 19:58:49,452 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 19:58:49,463 - INFO - Incident analysis completed in 0.16 seconds
+2025-09-20 19:58:49,463 - INFO - Analyzing batch of 8 payloads
+2025-09-20 19:58:49,463 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-20 19:58:49,463 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-20 19:58:49,479 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-20 19:58:49,479 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-20 19:58:49,494 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 19:58:49,494 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-20 19:58:49,510 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-20 19:58:49,512 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-20 19:58:49,526 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-20 19:58:49,526 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-20 19:58:49,541 - INFO - Analyzing payload: {{7*7}}...
+2025-09-20 19:58:49,541 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-20 19:58:49,552 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-20 19:58:49,552 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-20 19:58:49,562 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-20 19:58:49,562 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-20 19:58:49,573 - INFO - Batch payload analysis completed in 0.11 seconds
+2025-09-20 19:58:49,585 - INFO - Vector DB accessible with 127 documents
+2025-09-20 19:58:49,585 - INFO - Processing query: 'attack' as threat_analysis
+2025-09-20 19:58:49,594 - INFO - Sample query returned 3 results
+2025-09-20 19:58:49,594 - INFO - Data retrieval working: True (best similarity: 0.761)
+2025-09-20 19:58:49,594 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 19:58:49,594 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 19:58:49,605 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 19:58:49,605 - INFO - Pipeline health check completed: 4/4 components working
+2025-09-20 20:05:52,948 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:05:52,948 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:01,598 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-20 20:06:01,760 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:05,179 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:05,181 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:07,707 - INFO - Loaded existing collection: cybersecurity_knowledge
+2025-09-20 20:06:07,711 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:07,712 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:13,585 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-09-20 20:06:13,685 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:14,536 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:14,536 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:20,497 - INFO - Loaded existing collection: cybersecurity_knowledge
+2025-09-20 20:06:20,498 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:20,502 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:20,501 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:20,503 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:25,843 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:25,843 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:26,754 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:26,755 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:31,065 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:31,067 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:35,441 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:35,441 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:38,798 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:38,799 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:42,833 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:42,833 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:44,365 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:44,365 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:49,692 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-20 20:06:49,693 - INFO - Initializing RAG Pipeline...
+2025-09-20 20:06:49,766 - INFO - Found existing collection with 127 documents
+2025-09-20 20:06:49,768 - INFO - Vector DB accessible with 127 documents
+2025-09-20 20:06:49,768 - INFO - Processing query: 'attack' as threat_analysis
+2025-09-20 20:06:49,941 - INFO - Sample query returned 3 results
+2025-09-20 20:06:49,942 - INFO - Data retrieval working: True (best similarity: 0.761)
+2025-09-20 20:06:49,942 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 20:06:49,943 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 20:06:50,002 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 20:06:50,003 - INFO - Pipeline health check completed: 4/4 components working
+2025-09-20 20:06:50,004 - INFO - Pipeline initialized in 0.31 seconds
+2025-09-20 20:06:50,010 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-20 20:06:50,010 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-20 20:06:50,051 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-20 20:06:50,076 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-20 20:06:50,108 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-20 20:06:50,136 - INFO - Knowledge base query completed in 0.13 seconds
+2025-09-20 20:06:50,137 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-20 20:06:50,137 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-20 20:06:50,168 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-20 20:06:50,201 - INFO - Knowledge base query completed in 0.06 seconds
+2025-09-20 20:06:50,203 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-20 20:06:50,203 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-20 20:06:50,237 - INFO - Knowledge base query completed in 0.03 seconds
+2025-09-20 20:06:50,238 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-20 20:06:50,239 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-20 20:06:50,277 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-20 20:06:50,300 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-20 20:06:50,322 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-20 20:06:50,342 - INFO - Knowledge base query completed in 0.10 seconds
+2025-09-20 20:06:50,343 - INFO - Querying knowledge base: command injection protection...
+2025-09-20 20:06:50,343 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-20 20:06:50,365 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-20 20:06:50,388 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-20 20:06:50,411 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-20 20:06:50,431 - INFO - Knowledge base query completed in 0.09 seconds
+2025-09-20 20:06:50,432 - INFO - Analyzing security incident
+2025-09-20 20:06:50,432 - INFO - Analyzing threat with 3 indicators
+2025-09-20 20:06:50,432 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-20 20:06:50,456 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-20 20:06:50,475 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-20 20:06:50,492 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-20 20:06:50,513 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-20 20:06:50,515 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-20 20:06:50,541 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-20 20:06:50,541 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-20 20:06:50,563 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-20 20:06:50,565 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-20 20:06:50,586 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 20:06:50,586 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-20 20:06:50,606 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-20 20:06:50,606 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-20 20:06:50,628 - INFO - Incident analysis completed in 0.20 seconds
+2025-09-20 20:06:50,629 - INFO - Analyzing security incident
+2025-09-20 20:06:50,629 - INFO - Analyzing threat with 3 indicators
+2025-09-20 20:06:50,630 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 20:06:50,651 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-20 20:06:50,667 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-20 20:06:50,685 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-20 20:06:50,705 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-20 20:06:50,705 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-20 20:06:50,733 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-20 20:06:50,733 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-20 20:06:50,755 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-20 20:06:50,756 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-20 20:06:50,778 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 20:06:50,778 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-20 20:06:50,799 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-20 20:06:50,800 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 20:06:50,817 - INFO - Incident analysis completed in 0.19 seconds
+2025-09-20 20:06:50,818 - INFO - Analyzing security incident
+2025-09-20 20:06:50,819 - INFO - Analyzing threat with 3 indicators
+2025-09-20 20:06:50,819 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:06:50,841 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:06:50,859 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:06:50,877 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:06:50,899 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 20:06:50,899 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-20 20:06:50,922 - INFO - Analyzing payload: | whoami...
+2025-09-20 20:06:50,922 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-20 20:06:50,939 - INFO - Analyzing payload: && rm -rf /...
+2025-09-20 20:06:50,939 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-20 20:06:50,957 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 20:06:50,957 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-20 20:06:50,973 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-20 20:06:50,974 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:06:50,990 - INFO - Incident analysis completed in 0.17 seconds
+2025-09-20 20:06:50,991 - INFO - Analyzing batch of 8 payloads
+2025-09-20 20:06:50,991 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-20 20:06:50,991 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-20 20:06:51,012 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-20 20:06:51,012 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-20 20:06:51,060 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 20:06:51,061 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-20 20:06:51,100 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-20 20:06:51,100 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-20 20:06:51,121 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-20 20:06:51,121 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-20 20:06:51,142 - INFO - Analyzing payload: {{7*7}}...
+2025-09-20 20:06:51,142 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-20 20:06:51,159 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-20 20:06:51,160 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-20 20:06:51,181 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-20 20:06:51,181 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-20 20:06:51,202 - INFO - Batch payload analysis completed in 0.21 seconds
+2025-09-20 20:06:51,207 - INFO - Vector DB accessible with 127 documents
+2025-09-20 20:06:51,207 - INFO - Processing query: 'attack' as threat_analysis
+2025-09-20 20:06:51,225 - INFO - Sample query returned 3 results
+2025-09-20 20:06:51,225 - INFO - Data retrieval working: True (best similarity: 0.761)
+2025-09-20 20:06:51,226 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 20:06:51,226 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 20:06:51,248 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 20:06:51,249 - INFO - Pipeline health check completed: 4/4 components working
+2025-09-20 20:06:53,215 - INFO - Use pytorch device_name: cpu
+2025-09-20 20:06:53,217 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-20 20:06:59,931 - INFO - RAG Pipeline Orchestrator initialized successfully
+2025-09-20 20:06:59,931 - INFO - Initializing RAG Pipeline...
+2025-09-20 20:06:59,963 - INFO - Found existing collection with 127 documents
+2025-09-20 20:06:59,966 - INFO - Vector DB accessible with 127 documents
+2025-09-20 20:06:59,966 - INFO - Processing query: 'attack' as threat_analysis
+2025-09-20 20:07:00,119 - INFO - Sample query returned 3 results
+2025-09-20 20:07:00,119 - INFO - Data retrieval working: True (best similarity: 0.761)
+2025-09-20 20:07:00,120 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 20:07:00,120 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 20:07:00,147 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 20:07:00,147 - INFO - Pipeline health check completed: 4/4 components working
+2025-09-20 20:07:00,148 - INFO - Pipeline initialized in 0.22 seconds
+2025-09-20 20:07:00,151 - INFO - Querying knowledge base: SQL injection attack prevention...
+2025-09-20 20:07:00,151 - INFO - Processing query: 'SQL command injection attack prevention' as payload_identification
+2025-09-20 20:07:00,173 - INFO - Processing query: 'SQL code injection attack prevention' as payload_identification
+2025-09-20 20:07:00,192 - INFO - Processing query: 'SQL sql injection attack prevention' as payload_identification
+2025-09-20 20:07:00,216 - INFO - Processing query: 'SQL injection attack prevention' as payload_identification
+2025-09-20 20:07:00,233 - INFO - Knowledge base query completed in 0.08 seconds
+2025-09-20 20:07:00,234 - INFO - Querying knowledge base: MITRE ATT&CK T1110 brute force...
+2025-09-20 20:07:00,234 - INFO - Processing query: 'MITRE ATT&CK T1110 technique attack brute force' as threat_analysis
+2025-09-20 20:07:00,259 - INFO - Processing query: 'MITRE ATT&CK T1110 brute force' as general_security
+2025-09-20 20:07:00,282 - INFO - Knowledge base query completed in 0.05 seconds
+2025-09-20 20:07:00,282 - INFO - Querying knowledge base: cross-site scripting XSS mitigation...
+2025-09-20 20:07:00,282 - INFO - Processing query: 'cross-site scripting XSS mitigation' as payload_identification
+2025-09-20 20:07:00,305 - INFO - Knowledge base query completed in 0.02 seconds
+2025-09-20 20:07:00,306 - INFO - Querying knowledge base: directory traversal vulnerability...
+2025-09-20 20:07:00,306 - INFO - Processing query: 'directory directory traversal vulnerability' as threat_analysis
+2025-09-20 20:07:00,330 - INFO - Processing query: 'directory file inclusion vulnerability' as threat_analysis
+2025-09-20 20:07:00,352 - INFO - Processing query: 'directory path traversal vulnerability' as threat_analysis
+2025-09-20 20:07:00,369 - INFO - Processing query: 'directory traversal vulnerability' as threat_analysis
+2025-09-20 20:07:00,386 - INFO - Knowledge base query completed in 0.08 seconds
+2025-09-20 20:07:00,387 - INFO - Querying knowledge base: command injection protection...
+2025-09-20 20:07:00,387 - INFO - Processing query: 'command injection protection' as payload_identification
+2025-09-20 20:07:00,404 - INFO - Processing query: 'command command injection protection' as payload_identification
+2025-09-20 20:07:00,420 - INFO - Processing query: 'command code injection protection' as payload_identification
+2025-09-20 20:07:00,438 - INFO - Processing query: 'command sql injection protection' as payload_identification
+2025-09-20 20:07:00,457 - INFO - Knowledge base query completed in 0.07 seconds
+2025-09-20 20:07:00,458 - INFO - Analyzing security incident
+2025-09-20 20:07:00,458 - INFO - Analyzing threat with 3 indicators
+2025-09-20 20:07:00,458 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL injection' as payload_identification
+2025-09-20 20:07:00,477 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL command injection' as payload_identification
+2025-09-20 20:07:00,496 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL code injection' as payload_identification
+2025-09-20 20:07:00,518 - INFO - Processing query: 'Web application security incident suspicious database queries union select statements SQL sql injection' as payload_identification
+2025-09-20 20:07:00,540 - INFO - Analyzing payload: ' UNION SELECT username, password FROM users--...
+2025-09-20 20:07:00,540 - INFO - Processing query: 'analyze payload ' UNION SELECT username, password FROM users-- Web application security incident' as payload_identification
+2025-09-20 20:07:00,567 - INFO - Analyzing payload: admin' OR '1'='1'--...
+2025-09-20 20:07:00,568 - INFO - Processing query: 'analyze payload admin' OR '1'='1'-- Web application security incident' as payload_identification
+2025-09-20 20:07:00,600 - INFO - Analyzing payload: '; DROP TABLE users; --...
+2025-09-20 20:07:00,600 - INFO - Processing query: 'analyze payload '; DROP TABLE users; -- Web application security incident' as payload_identification
+2025-09-20 20:07:00,626 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 20:07:00,627 - INFO - Processing query: 'suspicious database queries union select statements SQL injection attack pattern technique' as threat_analysis
+2025-09-20 20:07:00,654 - INFO - Generating security recommendations for: Web application security incident suspicious database queries union select statements SQL injection
+2025-09-20 20:07:00,655 - INFO - Processing query: 'prevent protect mitigate Web application security incident suspicious database queries union select statements SQL injection' as mitigation_strategy
+2025-09-20 20:07:00,683 - INFO - Incident analysis completed in 0.23 seconds
+2025-09-20 20:07:00,684 - INFO - Analyzing security incident
+2025-09-20 20:07:00,684 - INFO - Analyzing threat with 3 indicators
+2025-09-20 20:07:00,684 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script command injection' as payload_identification
+2025-09-20 20:07:00,712 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 20:07:00,739 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script code injection' as payload_identification
+2025-09-20 20:07:00,761 - INFO - Processing query: 'Client-side security vulnerability malicious JavaScript XSS payload script sql injection' as payload_identification
+2025-09-20 20:07:00,781 - INFO - Analyzing payload: <script>alert('XSS')</script>...
+2025-09-20 20:07:00,781 - INFO - Processing query: 'analyze payload <script>alert('XSS')</script> Client-side security vulnerability' as payload_identification
+2025-09-20 20:07:00,802 - INFO - Analyzing payload: javascript:alert(document.cookie)...
+2025-09-20 20:07:00,802 - INFO - Processing query: 'analyze payload javascript:alert(document.cookie) Client-side security vulnerability' as payload_identification
+2025-09-20 20:07:00,821 - INFO - Analyzing payload: <img src=x onerror=alert('XSS')>...
+2025-09-20 20:07:00,822 - INFO - Processing query: 'analyze payload <img src=x onerror=alert('XSS')> Client-side security vulnerability' as payload_identification
+2025-09-20 20:07:00,845 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 20:07:00,845 - INFO - Processing query: 'malicious JavaScript XSS payload script injection attack pattern technique' as payload_identification
+2025-09-20 20:07:00,873 - INFO - Generating security recommendations for: Client-side security vulnerability malicious JavaScript XSS payload script injection
+2025-09-20 20:07:00,873 - INFO - Processing query: 'prevent protect mitigate Client-side security vulnerability malicious JavaScript XSS payload script injection' as payload_identification
+2025-09-20 20:07:00,901 - INFO - Incident analysis completed in 0.22 seconds
+2025-09-20 20:07:00,902 - INFO - Analyzing security incident
+2025-09-20 20:07:00,902 - INFO - Analyzing threat with 3 indicators
+2025-09-20 20:07:00,903 - INFO - Processing query: 'Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:07:00,930 - INFO - Processing query: 'Server-side command sql injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:07:00,962 - INFO - Processing query: 'Server-side command code injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:07:00,992 - INFO - Processing query: 'Server-side command command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:07:01,022 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 20:07:01,022 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Server-side command injection vulnerability' as payload_identification
+2025-09-20 20:07:01,054 - INFO - Analyzing payload: | whoami...
+2025-09-20 20:07:01,055 - INFO - Processing query: 'analyze payload | whoami Server-side command injection vulnerability' as payload_identification
+2025-09-20 20:07:01,084 - INFO - Analyzing payload: && rm -rf /...
+2025-09-20 20:07:01,085 - INFO - Processing query: 'analyze payload && rm -rf / Server-side command injection vulnerability' as payload_identification
+2025-09-20 20:07:01,113 - INFO - Investigating attack pattern with 3 indicators
+2025-09-20 20:07:01,113 - INFO - Processing query: 'system command execution shell injection remote code execution attack pattern technique' as payload_identification
+2025-09-20 20:07:01,142 - INFO - Generating security recommendations for: Server-side command injection vulnerability system command execution shell injection remote code execution
+2025-09-20 20:07:01,143 - INFO - Processing query: 'prevent protect mitigate Server-side command injection vulnerability system command execution shell injection remote code execution' as payload_identification
+2025-09-20 20:07:01,173 - INFO - Incident analysis completed in 0.27 seconds
+2025-09-20 20:07:01,177 - INFO - Analyzing batch of 8 payloads
+2025-09-20 20:07:01,177 - INFO - Analyzing payload: ' OR 1=1--...
+2025-09-20 20:07:01,178 - INFO - Processing query: 'analyze payload ' OR 1=1-- Security assessment' as payload_identification
+2025-09-20 20:07:01,207 - INFO - Analyzing payload: <script>alert(1)</script>...
+2025-09-20 20:07:01,208 - INFO - Processing query: 'analyze payload <script>alert(1)</script> Security assessment' as payload_identification
+2025-09-20 20:07:01,240 - INFO - Analyzing payload: ; cat /etc/passwd...
+2025-09-20 20:07:01,240 - INFO - Processing query: 'analyze payload ; cat /etc/passwd Security assessment' as payload_identification
+2025-09-20 20:07:01,266 - INFO - Analyzing payload: ../../../etc/passwd...
+2025-09-20 20:07:01,267 - INFO - Processing query: 'analyze payload ../../../etc/passwd Security assessment' as payload_identification
+2025-09-20 20:07:01,291 - INFO - Analyzing payload: eval($_POST['cmd'])...
+2025-09-20 20:07:01,292 - INFO - Processing query: 'analyze payload eval($_POST['cmd']) Security assessment' as payload_identification
+2025-09-20 20:07:01,328 - INFO - Analyzing payload: {{7*7}}...
+2025-09-20 20:07:01,328 - INFO - Processing query: 'analyze payload {{7*7}} Security assessment' as payload_identification
+2025-09-20 20:07:01,358 - INFO - Analyzing payload: %0A%0D/bin/cat%20/etc/passwd...
+2025-09-20 20:07:01,359 - INFO - Processing query: 'analyze payload %0A%0D/bin/cat%20/etc/passwd Security assessment' as payload_identification
+2025-09-20 20:07:01,389 - INFO - Analyzing payload: javascript:alert('xss')...
+2025-09-20 20:07:01,389 - INFO - Processing query: 'analyze payload javascript:alert('xss') Security assessment' as payload_identification
+2025-09-20 20:07:01,419 - INFO - Batch payload analysis completed in 0.24 seconds
+2025-09-20 20:07:01,426 - INFO - Vector DB accessible with 127 documents
+2025-09-20 20:07:01,426 - INFO - Processing query: 'attack' as threat_analysis
+2025-09-20 20:07:01,451 - INFO - Sample query returned 3 results
+2025-09-20 20:07:01,451 - INFO - Data retrieval working: True (best similarity: 0.761)
+2025-09-20 20:07:01,452 - INFO - Analyzing payload: ' OR '1'='1...
+2025-09-20 20:07:01,452 - INFO - Processing query: 'analyze payload ' OR '1'='1' as payload_identification
+2025-09-20 20:07:01,478 - INFO - Agent analysis working: True (detected: SQL Injection)
+2025-09-20 20:07:01,479 - INFO - Pipeline health check completed: 4/4 components working

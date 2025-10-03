@@ -1,0 +1,16 @@
+{
+  "total_ingested": 0,
+  "last_updated": 1758033723.638803,
+  "file_hashes": {},
+  "ingestion_history": [],
+  "full_reingest_stats": {
+    "mitre_data": 0,
+    "payload_data": 0,
+    "agent_knowledge": 127,
+    "total": 127,
+    "errors": 0
+  },
+  "mitre_csv_path": "C:\\Users\\S Jananii\\OneDrive\\Desktop\\assr\\mitre_attack_structured_dataset.csv",
+  "payload_csv_path": "C:\\Users\\S Jananii\\OneDrive\\Desktop\\assr\\payload_dataset.csv",
+  "cyberagents_path": "C:\\Users\\S Jananii\\OneDrive\\Desktop\\assr\\cyberagents"
+}
