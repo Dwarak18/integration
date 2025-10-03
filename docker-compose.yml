@@ -1,0 +1,12 @@
+# Docker Compose for RAG Service (ChromaDB)
+version: '3.8'
+services:
+  rag-service:
+    build: ./assr
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./cybersecurity_vectordb:/app/cybersecurity_vectordb
+      - ./test_vectordb:/app/test_vectordb
+      - ./rag_pipeline:/app/rag_pipeline
+    restart: on-failure

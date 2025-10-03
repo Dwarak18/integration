@@ -1,0 +1,141 @@
+version: '3.8'
+
+services:
+  # ChromaDB Vector Database
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chromadb_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - ANONYMIZED_TELEMETRY=TRUE
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/v1/heartbeat || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # RAG Service (ML-based payload analysis)
+  rag-service:
+    build: 
+      context: ../assr
+      dockerfile: ../docker-integration/dockerfiles/Dockerfile.rag
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../cybersecurity_vectordb:/app/cybersecurity_vectordb
+      - ../assr:/app
+      - rag_logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    depends_on:
+      - chromadb
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: unless-stopped
+
+  # Security Backend (RAG-integrated security decisions)
+  security-backend:
+    build:
+      context: ../API-gateway
+      dockerfile: ../docker-integration/dockerfiles/Dockerfile.security
+    ports:
+      - "9000:9000"
+    volumes:
+      - security_logs:/app/logs
+    environment:
+      - RAG_SERVICE_URL=http://rag-service:8000
+      - PYTHONPATH=/app
+    depends_on:
+      - rag-service
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # Application Backend (Business logic endpoints)
+  app-backend:
+    build:
+      context: ../API-gateway
+      dockerfile: ../docker-integration/dockerfiles/Dockerfile.backend
+    ports:
+      - "9001:9000"
+    volumes:
+      - app_logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # API Gateway (Entry point with payload inspection)
+  api-gateway:
+    build:
+      context: ../API-gateway
+      dockerfile: ../docker-integration/dockerfiles/Dockerfile.gateway
+    ports:
+      - "8080:8080"
+    volumes:
+      - gateway_logs:/app/logs
+      - ../API-gateway:/app
+    environment:
+      - RAG_SERVICE_URL=http://rag-service:8000
+      - SECURITY_BACKEND_URL=http://security-backend:9000
+      - APP_BACKEND_URL=http://app-backend:9000
+      - PYTHONPATH=/app
+    depends_on:
+      - rag-service
+      - security-backend
+      - app-backend
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy (Optional - for production)
+  nginx:
+    build:
+      context: ../API-gateway
+      dockerfile: ../docker-integration/dockerfiles/Dockerfile.nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../API-gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - api-gateway
+    restart: unless-stopped
+
+volumes:
+  chromadb_data:
+  rag_logs:
+  security_logs:
+  app_logs:
+  gateway_logs:
+  nginx_logs:
+
+networks:
+  default:
+    driver: bridge
