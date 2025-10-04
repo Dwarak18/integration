@@ -17,7 +17,7 @@
 ### 1. Clone Repository
 ```bash
 git clone https://github.com/Dwarak18/integration.git
-cd https://github.com/Dwarak18/integration.git
+cd integration
 ```
 
 ### 2. Environment Setup
@@ -473,4 +473,5 @@ Malicious verdicts are logged in `assr/malicious_verdicts.log`.
 - ChromaDB runs internally within the RAG service container.
 - For production, secure API keys and network.
 - Customize backend URLs in API-Gateway as needed.
+
 
