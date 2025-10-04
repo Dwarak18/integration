@@ -16,8 +16,8 @@
 
 ### 1. Clone Repository
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/Dwarak18/integration.git
+cd https://github.com/Dwarak18/integration.git
 ```
 
 ### 2. Environment Setup
