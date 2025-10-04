@@ -1,8 +1,3 @@
-# AI-Powered Threat Detection System
-
-## Overview
-An advanced cybersecurity system that combines machine learning with traditional security patterns to detect and prevent threats in real-time. Uses ChromaDB vector database for intelligent payload analysis and MongoDB for comprehensive logging.
-
 ## Requirements
 
 ### System Requirements
@@ -46,15 +41,126 @@ RAG_PORT=8000
 ```
 
 ### 3. Docker Deployment
+
+#### Project Structure
+```
+docker-integration/
+├── docker-compose.yml          # Main orchestration file
+├── dockerfiles/               # Individual service containers
+│   ├── Dockerfile.backend     # API Gateway container
+│   ├── Dockerfile.gateway     # Gateway service
+│   ├── Dockerfile.nginx       # Load balancer
+│   ├── Dockerfile.rag         # RAG service container
+│   └── Dockerfile.security    # Security backend
+├── scripts/                   # Automated deployment scripts
+│   ├── start_docker_system.sh # One-click system startup
+│   ├── stop_docker_system.sh  # Clean system shutdown
+│   └── test_docker_system.sh  # System validation tests
+├── config/                    # Service configurations
+│   ├── docker_config.py       # Docker environment settings
+│   ├── gateway_docker_config.py
+│   ├── rag_docker_config.py
+│   └── requirements-*.txt     # Service-specific dependencies
+└── README.md                  # Docker deployment guide
+```
+
+#### Option A: Automated Deployment (Recommended)
 ```bash
-# Start all services
-docker-compose up -d
+# Navigate to docker integration directory
+cd docker-integration
+
+# Make scripts executable
+chmod +x scripts/*.sh
+
+# Start entire system with health checks
+./scripts/start_docker_system.sh
+
+# Test system functionality
+./scripts/test_docker_system.sh
+
+# Stop system (with optional cleanup)
+./scripts/stop_docker_system.sh [--clean]
+```
+
+#### Option B: Manual Deployment
+```bash
+# Navigate to docker integration directory
+cd docker-integration
+
+# Build and start all services
+docker-compose up --build -d
 
 # Check service status
 docker-compose ps
 
 # View logs
 docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+#### Deployment Scripts Details
+
+**start_docker_system.sh**:
+- Builds all Docker containers
+- Starts services in correct order
+- Waits for initialization (30s)
+- Performs health checks on all endpoints
+- Reports service status
+
+**test_docker_system.sh**:
+- Tests ChromaDB connectivity
+- Validates RAG service with sample payloads
+- Tests API Gateway security filtering
+- Verifies end-to-end threat detection
+
+**stop_docker_system.sh**:
+- Gracefully stops all services
+- Optional `--clean` flag removes all data volumes
+- Performs system cleanup
+
+### 4. Verify Installation
+
+After running the deployment scripts, verify all services:
+
+```bash
+# Check all containers are running
+docker-compose ps
+
+# Expected output: All services with "Up" status
+#   rag-service    Up      0.0.0.0:8000->8000/tcp
+#   mongodb        Up      0.0.0.0:27017->27017/tcp
+```
+
+#### Service Health Checks
+```bash
+# RAG Service health
+curl http://localhost:8000/health
+# Expected: {"status": "healthy", "services": {...}}
+
+# MongoDB connection test
+curl http://localhost:8000/threat_statistics
+# Expected: Statistics with verdict breakdowns
+```
+
+#### Quick Functionality Test
+```bash
+# Test malicious payload detection
+curl -X POST "http://localhost:8000/check_payload" \
+  -H "Content-Type: application/json" \
+  -d '{"payload": "1 UNION SELECT password FROM users", "source_ip": "192.168.1.1"}'
+
+# Expected response:
+# {
+#   "verdict": "malicious",
+#   "confidence_score": 0.7,
+#   "threat_details": {
+#     "attack_type": "Authentication Bypass",
+#     "severity": "Critical",
+#     "mitre_techniques": ["T1078"]
+#   }
+# }
 ```
 
 ## Configuration
