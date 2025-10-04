@@ -8,13 +8,24 @@ import logging
 import time
 import pandas as pd
 import json
+import csv
 from contextlib import asynccontextmanager
 from typing import Dict, List, Optional, Any, Union, TYPE_CHECKING
 from datetime import datetime
+from difflib import SequenceMatcher
 
 # Set up logging FIRST (before any imports that use logger)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Import MongoDB logging module
+try:
+    from db_logging import mongo_logger, initialize_mongodb, close_mongodb
+    MONGODB_AVAILABLE = True
+    logger.info("MongoDB logging module imported successfully")
+except ImportError as e:
+    logger.warning(f"MongoDB logging not available: {e}")
+    MONGODB_AVAILABLE = False
 
 # Add the rag_pipeline to the Python path
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
@@ -59,6 +70,7 @@ except ImportError as e:
 
 # Global variables - Only ChromaDB through RAG pipeline
 rag_pipeline = None
+payload_dataset = None
 
 def init_rag_pipeline():
     """Initialize the RAG pipeline with ChromaDB"""
@@ -81,6 +93,79 @@ def init_rag_pipeline():
         logger.info("RAG Pipeline not available, service will use fallback analysis")
         return None
 
+def load_payload_dataset():
+    """Load the payload dataset from CSV file once"""
+    global payload_dataset
+    
+    if payload_dataset is not None:
+        return payload_dataset
+    
+    try:
+        dataset_path = os.path.join(os.path.dirname(__file__), "payload_dataset.csv")
+        payload_dataset = []
+        
+        with open(dataset_path, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                payload_dataset.append({
+                    'payload': row.get('Payload', '').strip(),
+                    'signature': row.get('Signature', '').strip(),
+                    'attack_type': row.get('AttackType', '').strip(),
+                    'severity': row.get('Severity', '').strip(),
+                    'mitre': row.get('MITRE', '').strip(),
+                    'label': row.get('Label', '').strip(),
+                    'description': row.get('Description', '').strip()
+                })
+        
+        logger.info(f"Loaded {len(payload_dataset)} payload signatures from dataset")
+        return payload_dataset
+        
+    except Exception as e:
+        logger.error(f"Failed to load payload dataset: {str(e)}")
+        return []
+
+def enrich_threat_details_from_csv(payload, attack_type_hint=None):
+    """Enrich threat details using CSV dataset for malicious payloads"""
+    dataset = load_payload_dataset()
+    
+    if not dataset:
+        return None
+    
+    best_match = None
+    best_ratio = 0.0
+    
+    # Clean user payload for comparison
+    user_payload_clean = payload.lower().strip()
+    
+    # First try exact matching by attack type if hint is provided
+    if attack_type_hint:
+        for entry in dataset:
+            if entry['attack_type'].lower() == attack_type_hint.lower():
+                payload_clean = entry['payload'].lower().strip()
+                ratio = SequenceMatcher(None, user_payload_clean, payload_clean).ratio()
+                
+                if ratio > best_ratio and ratio > 0.2:  # Lower threshold for type-specific matches
+                    best_ratio = ratio
+                    best_match = entry
+    
+    # If no good type-specific match, try general matching
+    if not best_match or best_ratio < 0.4:
+        for entry in dataset:
+            payload_clean = entry['payload'].lower().strip()
+            
+            # Calculate similarity ratio
+            ratio = SequenceMatcher(None, user_payload_clean, payload_clean).ratio()
+            
+            # Also check if user payload contains key parts of the dataset payload
+            if any(part in user_payload_clean for part in payload_clean.split() if len(part) > 3):
+                ratio += 0.1  # Boost for partial matches
+            
+            if ratio > best_ratio and ratio > 0.3:  # Minimum threshold
+                best_ratio = ratio
+                best_match = entry
+    
+    return best_match if best_ratio > 0.3 else None
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
@@ -96,6 +181,20 @@ async def lifespan(app: FastAPI):
         else:
             logger.warning("RAG pipeline not initialized - service will use fallback analysis")
         
+        # Initialize MongoDB logging
+        if MONGODB_AVAILABLE:
+            mongodb_connected = await initialize_mongodb()
+            if mongodb_connected:
+                logger.info("MongoDB logging initialized successfully")
+                await mongo_logger.log_system_event(
+                    'INFO', 'RAG service started with MongoDB logging', 'rag_service',
+                    {'rag_pipeline_available': rag_pipeline is not None}
+                )
+            else:
+                logger.warning("MongoDB connection failed - logging to files only")
+        else:
+            logger.info("MongoDB not available - using file logging only")
+        
     except Exception as e:
         logger.error(f"Error during startup: {e}")
         rag_pipeline = None
@@ -104,6 +203,17 @@ async def lifespan(app: FastAPI):
     
     # Shutdown
     logger.info("RAG service shutting down")
+    
+    # Close MongoDB connection
+    if MONGODB_AVAILABLE:
+        try:
+            await mongo_logger.log_system_event(
+                'INFO', 'RAG service shutting down', 'rag_service'
+            )
+            await close_mongodb()
+        except Exception as e:
+            logger.error(f"Error closing MongoDB connection: {e}")
+    
     if rag_pipeline:
         try:
             # Add cleanup if needed
@@ -192,6 +302,40 @@ async def stats():
         logger.error(f"Error getting stats: {e}")
         return {'status': 'error', 'message': str(e)}
 
+@app.get('/threat_statistics')
+async def get_threat_statistics(hours: int = 24):
+    """Get threat statistics from MongoDB for the last N hours"""
+    try:
+        if not MONGODB_AVAILABLE or not mongo_logger.connected:
+            return {
+                'status': 'error',
+                'message': 'MongoDB not available',
+                'hours': hours
+            }
+        
+        stats = await mongo_logger.get_threat_statistics(hours)
+        
+        if not stats:
+            return {
+                'status': 'error',
+                'message': 'Failed to retrieve statistics',
+                'hours': hours
+            }
+        
+        return {
+            'status': 'success',
+            'data': stats,
+            'mongodb_connected': True
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting threat statistics: {e}")
+        return {
+            'status': 'error',
+            'message': str(e),
+            'hours': hours
+        }
+
 @app.post('/check_payload')
 async def check_payload(req: PayloadRequest) -> PayloadAnalysisResponse:
     start_time = time.time()
@@ -222,24 +366,21 @@ async def check_payload(req: PayloadRequest) -> PayloadAnalysisResponse:
         # Method 2: Fallback to simple pattern matching
         if verdict == 'unknown':
             logger.info("Using pattern matching fallback")
-            verdict = await call_pattern_matching(req.payload)
-            confidence_score = 0.6 if verdict == 'malicious' else 0.4
-            
-            if verdict == 'malicious':
-                threat_details = ThreatDetails(
-                    attack_type="Pattern-based detection",
-                    severity="Medium",
-                    description="Detected based on payload patterns",
-                    confidence_score=confidence_score,
-                    recommendations=["Further investigation recommended", "Consider blocking this payload"]
-                )
-                blocking_recommended = True
+            pattern_result = await call_pattern_matching(req.payload)
+            verdict = pattern_result['verdict']
+            confidence_score = pattern_result['confidence_score']
+            threat_details = ThreatDetails(**pattern_result['threat_details'])
+            similar_threats = pattern_result.get('similar_threats', [])
+            blocking_recommended = pattern_result.get('blocking_recommended', False)
+        
+        processing_time = int((time.time() - start_time) * 1000)
         
         # Log malicious verdicts
         if verdict == 'malicious':
-            log_malicious_detailed(req.payload, confidence_score, threat_details, req.source_ip)
-        
-        processing_time = int((time.time() - start_time) * 1000)
+            await log_malicious_detailed(
+                req.payload, confidence_score, threat_details, req.source_ip,
+                processing_time, similar_threats, blocking_recommended
+            )
         
         return PayloadAnalysisResponse(
             verdict=verdict,
@@ -306,8 +447,8 @@ async def analyze_with_rag_pipeline(payload: str) -> Optional[Dict[str, Any]]:
                 verdict = 'legit'
                 confidence_score = getattr(threat_analysis, 'confidence_score', 0.7)
         
-        # Build comprehensive threat details
-        threat_details = {
+        # Build base threat details from ChromaDB analysis
+        base_threat_details = {
             'signature': getattr(payload_analysis, 'attack_classification', '') if payload_analysis else '',
             'attack_type': getattr(payload_analysis, 'payload_type', '') if payload_analysis else '',
             'severity': getattr(payload_analysis, 'severity_level', '') if payload_analysis else '',
@@ -318,6 +459,30 @@ async def analyze_with_rag_pipeline(payload: str) -> Optional[Dict[str, Any]]:
             'affected_systems': getattr(threat_analysis, 'affected_systems', []) if threat_analysis else [],
             'recommendations': getattr(threat_analysis, 'recommendations', []) if threat_analysis else []
         }
+        
+        # If payload is identified as malicious, enrich with CSV dataset details
+        if verdict == 'malicious':
+            attack_type_hint = base_threat_details.get('attack_type', '')
+            csv_match = enrich_threat_details_from_csv(payload, attack_type_hint)
+            
+            if csv_match:
+                # Enrich with CSV data while keeping ChromaDB analysis
+                threat_details = {
+                    'signature': csv_match['signature'] or base_threat_details['signature'],
+                    'attack_type': csv_match['attack_type'] or base_threat_details['attack_type'],
+                    'severity': csv_match['severity'] or base_threat_details['severity'],
+                    'mitre_techniques': [csv_match['mitre']] if csv_match['mitre'] else base_threat_details['mitre_techniques'],
+                    'description': csv_match['description'] or base_threat_details['description'],
+                    'confidence_score': confidence_score,
+                    'risk_level': csv_match['severity'] or base_threat_details['risk_level'],
+                    'affected_systems': base_threat_details['affected_systems'],
+                    'recommendations': base_threat_details['recommendations']
+                }
+                logger.info(f"Enriched malicious payload with CSV data: {csv_match['attack_type']} - {csv_match['severity']}")
+            else:
+                threat_details = base_threat_details
+        else:
+            threat_details = base_threat_details
         
         similar_threats = []
         if threat_analysis and hasattr(threat_analysis, 'evidence'):
@@ -346,9 +511,36 @@ def log_malicious(payload, score):
     except Exception as e:
         logger.error(f"Error logging malicious payload: {e}")
 
-def log_malicious_detailed(payload: str, score: float, threat_details: ThreatDetails, source_ip: Optional[str] = None):
+async def log_malicious_detailed(payload: str, score: float, threat_details: ThreatDetails, 
+                               source_ip: Optional[str] = None, processing_time_ms: int = 0,
+                               similar_threats: Optional[List[Dict]] = None, blocking_recommended: bool = False):
     """Enhanced logging for malicious payloads with detailed threat information"""
     try:
+        # MongoDB logging (primary)
+        if MONGODB_AVAILABLE and mongo_logger.connected:
+            threat_details_dict = {
+                'signature': threat_details.signature,
+                'attack_type': threat_details.attack_type,
+                'severity': threat_details.severity,
+                'mitre_techniques': threat_details.mitre_techniques,
+                'description': threat_details.description,
+                'risk_level': threat_details.risk_level,
+                'affected_systems': threat_details.affected_systems,
+                'recommendations': threat_details.recommendations
+            }
+            
+            await mongo_logger.log_threat_verdict(
+                payload=payload,
+                verdict='malicious',
+                confidence_score=score,
+                threat_details=threat_details_dict,
+                source_ip=source_ip,
+                processing_time_ms=processing_time_ms,
+                similar_threats=similar_threats or [],
+                blocking_recommended=blocking_recommended
+            )
+        
+        # File logging (backup/legacy)
         log_dir = os.path.join(os.path.dirname(__file__), 'logs')
         os.makedirs(log_dir, exist_ok=True)
         
@@ -365,7 +557,7 @@ def log_malicious_detailed(payload: str, score: float, threat_details: ThreatDet
                 'risk_level': threat_details.risk_level
             },
             'source_ip': source_ip,
-            'blocking_recommended': score > 0.7
+            'blocking_recommended': blocking_recommended
         }
         
         # Write to detailed log file
@@ -378,9 +570,11 @@ def log_malicious_detailed(payload: str, score: float, threat_details: ThreatDet
     except Exception as e:
         logger.error(f"Error logging detailed malicious payload: {e}")
 
-async def call_pattern_matching(payload: str) -> str:
-    """Enhanced pattern matching fallback with more comprehensive patterns"""
+async def call_pattern_matching(payload: str) -> Dict[str, Any]:
+    """Pattern matching fallback with CSV enrichment for malicious payloads"""
     try:
+        
+        # Fallback to pattern matching if no CSV match
         # SQL Injection patterns
         sql_patterns = ['union', 'select', 'drop', 'delete', 'insert', 'update', 'exec', 'execute', '--', ';--']
         
@@ -400,21 +594,99 @@ async def call_pattern_matching(payload: str) -> str:
         payload_lower = payload.lower()
         
         threat_count = 0
+        detected_types = []
+        
         for pattern in all_patterns:
             if pattern.lower() in payload_lower:
                 threat_count += 1
+                if pattern in sql_patterns:
+                    detected_types.append("SQL Injection")
+                elif pattern in xss_patterns:
+                    detected_types.append("Cross-Site Scripting")
+                elif pattern in cmd_patterns:
+                    detected_types.append("Command Injection")
+                elif pattern in path_patterns:
+                    detected_types.append("Directory Traversal")
+                elif pattern in auth_patterns:
+                    detected_types.append("Authentication Bypass")
         
         # More sophisticated scoring
         if threat_count >= 2:
-            return 'malicious'
+            verdict = 'malicious'
+            confidence = 0.7
         elif threat_count == 1 and len(payload) > 50:  # Single pattern in long payload
-            return 'malicious'
+            verdict = 'malicious'
+            confidence = 0.6
         else:
-            return 'legit'
+            verdict = 'legit'
+            confidence = 0.3
+        
+        # Build base threat details for pattern matching
+        attack_types = list(set(detected_types)) if detected_types else ["Unknown"]
+        severity = "High" if threat_count >= 2 else "Medium" if threat_count == 1 else "Low"
+        
+        base_threat_details = {
+            'signature': f"Pattern-based detection: {', '.join(attack_types)}",
+            'attack_type': ', '.join(attack_types),
+            'severity': severity,
+            'mitre_techniques': [],
+            'description': f"Detected {threat_count} suspicious pattern(s) in payload",
+            'confidence_score': confidence,
+            'risk_level': severity,
+            'affected_systems': [],
+            'recommendations': ["Monitor payload", "Consider blocking if confirmed malicious"]
+        }
+        
+        # If malicious, try to enrich with CSV data
+        if verdict == 'malicious' and attack_types and attack_types[0] != "Unknown":
+            csv_match = enrich_threat_details_from_csv(payload, attack_types[0])
+            
+            if csv_match:
+                # Enrich with CSV data
+                threat_details = {
+                    'signature': csv_match['signature'] or base_threat_details['signature'],
+                    'attack_type': csv_match['attack_type'] or base_threat_details['attack_type'],
+                    'severity': csv_match['severity'] or base_threat_details['severity'],
+                    'mitre_techniques': [csv_match['mitre']] if csv_match['mitre'] else base_threat_details['mitre_techniques'],
+                    'description': csv_match['description'] or base_threat_details['description'],
+                    'confidence_score': confidence,
+                    'risk_level': csv_match['severity'] or base_threat_details['risk_level'],
+                    'affected_systems': base_threat_details['affected_systems'],
+                    'recommendations': base_threat_details['recommendations']
+                }
+                logger.info(f"Pattern matching enriched with CSV data: {csv_match['attack_type']} - {csv_match['severity']}")
+            else:
+                threat_details = base_threat_details
+        else:
+            threat_details = base_threat_details
+        
+        return {
+            'verdict': verdict,
+            'confidence_score': confidence,
+            'threat_details': threat_details,
+            'similar_threats': [],
+            'blocking_recommended': verdict == 'malicious' and confidence > 0.6
+        }
             
     except Exception as e:
         logger.error(f"Error in pattern matching: {e}")
-        return 'legit'
+        return {
+            'verdict': 'unknown',
+            'confidence_score': 0.0,
+            'threat_details': {
+                'signature': '',
+                'attack_type': '',
+                'severity': '',
+                'mitre_techniques': [],
+                'description': f"Pattern matching failed: {str(e)}",
+                'confidence_score': 0.0,
+                'risk_level': '',
+                'affected_systems': [],
+                'recommendations': ["Manual review required"]
+            },
+            'similar_threats': [],
+            'blocking_recommended': False
+        }
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")

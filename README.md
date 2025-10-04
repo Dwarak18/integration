@@ -1,191 +1,311 @@
-# 🛡️ Cybersecurity RAG System
+# AI-Powered Threat Detection System
 
 ## Overview
-A comprehensive cybersecurity threat detection system that integrates Retrieval-Augmented Generation (RAG) with multi-layer security analysis. The system provides real-time payload inspection, threat detection, and security automation using machine learning and pattern matching.
+An advanced cybersecurity system that combines machine learning with traditional security patterns to detect and prevent threats in real-time. Uses ChromaDB vector database for intelligent payload analysis and MongoDB for comprehensive logging.
 
-## 🏗️ Architecture
+## Requirements
 
-### Core Components
-- **RAG Service** (Port 8000): ML-based payload analysis using ChromaDB vector database
-- **API Gateway** (Port 8080): Main entry point with multi-layer security filtering  
-- **Security Backend** (Port 9000): Advanced security decision engine
-- **App Backend** (Port 9001): Application logic and user management
-- **ChromaDB** (Port 8001): Vector database for cybersecurity knowledge base
-- **Nginx** (Ports 80/443): Load balancer and reverse proxy
+### System Requirements
+- **Operating System**: Linux, Windows (WSL), or macOS
+- **Memory**: Minimum 8GB RAM (16GB recommended)
+- **Storage**: 10GB available disk space
+- **CPU**: Multi-core processor recommended
 
-### Features
-- 🎯 **Real-time Threat Detection**: Pattern matching and ML-based analysis
-- 🧠 **RAG-Enhanced Analysis**: Context-aware security decisions using vector embeddings
-- 🔄 **Fallback Mechanisms**: Multiple analysis layers with graceful degradation
-- 📊 **Comprehensive Logging**: Detailed threat analysis and incident tracking
-- 🐳 **Containerized Deployment**: Full Docker support with health monitoring
-- 🔧 **OWASP Integration**: Industry-standard security rule implementation
+### Software Dependencies
+- **Docker**: Version 20.10 or higher
+- **Docker Compose**: Version 2.0 or higher
+- **Python**: 3.11+ (for development only)
+- **Git**: For repository cloning
 
-## 🚀 Quick Start
+## Installation
 
-### Prerequisites
-- Docker and Docker Compose
-- Python 3.11+
-- 8GB+ RAM recommended
-
-### One-Step Deployment
+### 1. Clone Repository
 ```bash
-cd docker-integration/scripts
-./start_docker_system.sh
+git clone <repository-url>
+cd <project-directory>
 ```
 
-This script will:
-- 🏗️ Build all Docker containers
-- 🚀 Start the complete system
-- ⏳ Wait for service initialization
-- 🔍 Perform health checks
-- 📊 Display service URLs
-
-### Manual Deployment
+### 2. Environment Setup
+Create environment file:
 ```bash
-cd docker-integration
-docker-compose up --build -d
+cp .env.example .env  # If available, or create manually
 ```
 
-## 📡 API Endpoints
-
-### RAG Service (Port 8000)
-- **POST /check_payload**: Analyze payload for threats
-  ```json
-  {
-    "payload": "<payload_string>",
-    "source_ip": "192.168.1.100"
-  }
-  ```
-- **GET /health**: Service health status
-- **GET /stats**: System statistics
-
-### API Gateway (Port 8080)
-- **All Routes**: Protected with multi-layer security analysis
-- **GET /health**: Gateway health status
-
-### Security Backend (Port 9000)
-- **POST /analyze**: Advanced threat analysis
-- **GET /health**: Backend health status
-
-## 🧪 Testing the System
-
-### Test Malicious Payload
+Required environment variables:
 ```bash
-curl -X POST http://localhost:8000/check_payload \
+# MongoDB Configuration
+MONGODB_HOST=mongodb
+MONGODB_PORT=27017
+MONGODB_USERNAME=admin
+MONGODB_PASSWORD=admin123
+MONGODB_DATABASE=threat_intelligence
+
+# RAG Service Configuration
+RAG_HOST=localhost
+RAG_PORT=8000
+```
+
+### 3. Docker Deployment
+```bash
+# Start all services
+docker-compose up -d
+
+# Check service status
+docker-compose ps
+
+# View logs
+docker-compose logs -f
+```
+
+## Configuration
+
+### Service Ports
+- **RAG Service**: 8000 (Main threat analysis API)
+- **MongoDB**: 27017 (Database storage)
+- **ChromaDB**: Internal container communication
+
+### Database Configuration
+The system automatically creates MongoDB collections:
+- `threat_verdicts` - Stores malicious payload analysis
+- `payload_analysis` - Performance metrics  
+- `system_logs` - Service events and errors
+
+### CSV Data Sources
+- `mitre_attack_structured_dataset.csv` - MITRE ATT&CK techniques
+- `payload_dataset.csv` - Known malicious patterns
+
+## API Usage
+
+### Health Check
+```bash
+curl http://localhost:8000/health
+```
+
+### Analyze Payload
+```bash
+curl -X POST "http://localhost:8000/check_payload" \
   -H "Content-Type: application/json" \
-  -d '{"payload": "<script>alert(1)</script> UNION SELECT * FROM users"}'
+  -d '{
+    "payload": "1 UNION SELECT password FROM users",
+    "source_ip": "192.168.1.100"
+  }'
 ```
 
-### Test Legitimate Request
+### Get Threat Statistics
 ```bash
-curl -X GET http://localhost:8080/api/users
+curl http://localhost:8000/threat_statistics
 ```
 
-### Health Check All Services
+## Common Setup Errors & Solutions
+
+### 1. Docker Issues
+
+**Error**: `Cannot connect to the Docker daemon`
 ```bash
-curl http://localhost:8000/health  # RAG Service
-curl http://localhost:8080/health  # API Gateway  
-curl http://localhost:9000/health  # Security Backend
+# Solution: Start Docker service
+sudo systemctl start docker    # Linux
+# Or restart Docker Desktop    # Windows/macOS
 ```
 
-## 📁 Project Structure
-
-```
-api-integrate/
-├── 🐳 docker-integration/          # Docker orchestration
-│   ├── dockerfiles/                # Individual service Dockerfiles
-│   ├── scripts/                    # Deployment scripts
-│   └── docker-compose.yml          # Main composition file
-├── 🧠 assr/                        # RAG Service & ML Pipeline
-│   ├── rag_service.py              # Main RAG service
-│   ├── rag_pipeline/               # ML pipeline components
-│   └── cyberagents/                # Cybersecurity agents
-├── 🛡️ API-gateway/                 # API Gateway & Security
-│   ├── main.py                     # Gateway main service
-│   ├── security_backend.py         # Security analysis
-│   └── owasp_rules.py              # OWASP rule engine
-├── 📊 logs/                        # System logs (excluded from Git)
-├── 🗄️ cybersecurity_vectordb/      # Vector database (excluded)
-└── 🔧 requirements.txt             # Python dependencies
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-Create a `.env` file (optional):
+**Error**: `Port already in use`
 ```bash
-CHROMA_HOST=chromadb
-CHROMA_PORT=8000
-PYTHONPATH=/app
-LOG_LEVEL=INFO
+# Solution: Check and kill processes using ports
+sudo lsof -i :8000  # Check port 8000
+sudo kill -9 <PID>  # Kill process
 ```
 
-### Docker Compose Override
-For development, create `docker-compose.override.yml`:
-```yaml
-version: '3.8'
-services:
-  rag-service:
-    volumes:
-      - ./assr:/app
-    ports:
-      - "8000:8000"
-```
-
-## 🔍 Monitoring & Logs
-
-### View Service Logs
+**Error**: `docker-compose command not found`
 ```bash
-# All services
+# Solution: Install Docker Compose
+sudo apt-get install docker-compose-plugin  # Linux
+# Or update Docker Desktop                   # Windows/macOS
+```
+
+### 2. Memory Issues
+
+**Error**: Container exits with code 137 (Out of Memory)
+```bash
+# Solution: Increase Docker memory allocation
+# Docker Desktop → Settings → Resources → Memory (minimum 8GB)
+```
+
+**Error**: ChromaDB startup fails
+```bash
+# Solution: Clear vector database and restart
+docker-compose down -v
+docker-compose up -d
+```
+
+### 3. Database Connection Issues
+
+**Error**: `MongoDB connection failed`
+```bash
+# Check MongoDB container status
+docker-compose logs mongodb
+
+# Restart MongoDB service
+docker-compose restart mongodb
+```
+
+**Error**: `ChromaDB not responding`
+```bash
+# Check ChromaDB directory permissions
+ls -la assr/cybersecurity_vectordb/
+
+# Recreate ChromaDB data
+docker-compose down
+docker volume rm <project>_mongodb_data
+docker-compose up -d
+```
+
+### 4. Network Connectivity
+
+**Error**: `Service unavailable` (503)
+```bash
+# Check all services are running
+docker-compose ps
+
+# Check logs for specific service
+docker-compose logs rag-service
+```
+
+**Error**: `Connection refused`
+```bash
+# Verify service ports
+netstat -tlnp | grep :8000
+
+# Check firewall settings
+sudo ufw status  # Linux
+```
+
+### 5. Data Loading Issues
+
+**Error**: `CSV files not found`
+```bash
+# Ensure CSV files exist in assr/ directory
+ls -la assr/*.csv
+
+# If missing, create sample data or contact maintainer
+```
+
+**Error**: `Vector database empty`
+```bash
+# Check ChromaDB initialization
+docker-compose logs rag-service | grep -i chroma
+
+# Force regenerate embeddings (if applicable)
+docker-compose restart rag-service
+```
+
+## Verification
+
+### 1. Service Health Check
+```bash
+# Check all services are running
+docker-compose ps
+
+# Expected output: All services with "Up" status
+```
+
+### 2. Test Basic Functionality
+```bash
+# Health check
+curl http://localhost:8000/health
+
+# Expected response: {"status": "healthy", "services": {...}}
+```
+
+### 3. Test Threat Detection
+```bash
+# Test SQL injection detection
+curl -X POST "http://localhost:8000/check_payload" \
+  -H "Content-Type: application/json" \
+  -d '{"payload": "1 UNION SELECT password FROM users", "source_ip": "192.168.1.1"}'
+
+# Expected: verdict="malicious", MITRE techniques, severity level
+```
+
+### 4. Verify Database Storage
+```bash
+# Check MongoDB data
+curl http://localhost:8000/threat_statistics
+
+# Expected: Statistics showing threat counts and attack types
+```
+
+## Development Setup
+
+### Local Development (Optional)
+```bash
+# Install Python dependencies
+cd assr
+pip install -r requirements.txt
+
+# Run RAG service locally (for development)
+python rag_service.py
+```
+
+### File Structure
+```
+├── assr/                     # Main RAG service
+│   ├── rag_service.py       # FastAPI application
+│   ├── db_logging.py        # MongoDB integration
+│   ├── requirements.txt     # Python dependencies
+│   └── *.csv               # Threat intelligence data
+├── docker-integration/      # Docker deployment
+│   ├── docker-compose.yml  # Service orchestration
+│   └── dockerfiles/        # Container definitions
+└── API-gateway/            # Security gateway service
+```
+
+## Maintenance
+
+### Regular Tasks
+```bash
+# View logs
 docker-compose logs -f
 
-# Specific service
-docker-compose logs -f rag-service
-docker-compose logs -f api-gateway
+# Update containers
+docker-compose pull
+docker-compose up -d
+
+# Backup MongoDB data
+docker exec mongodb mongodump --out /backup
+
+# Clean up old containers
+docker system prune -f
 ```
 
-### System Management
+### Performance Monitoring
 ```bash
-# Stop system
-./docker-integration/scripts/stop_docker_system.sh
+# Monitor resource usage
+docker stats
 
-# Restart specific service
-docker-compose restart rag-service
-
-# Remove all containers and volumes
-docker-compose down -v
+# Check disk usage  
+df -h
+du -sh assr/cybersecurity_vectordb/
 ```
 
-## 🛠️ Development
+## Support
 
-### Local Development Setup
-```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
+### Getting Help
+- Check service logs: `docker-compose logs -f [service-name]`
+- Verify all services are running: `docker-compose ps`
+- Review this README for common errors and solutions
+- Ensure system requirements are met
 
-# Install dependencies
-pip install -r assr/requirements.txt
-pip install -r API-gateway/requirements.txt
+### Service Status
+All services should show "Up" status in `docker-compose ps`. If any service shows "Exit" status, check its logs for error details.
 
-# Run services locally
-cd assr && python rag_service.py
-cd API-gateway && uvicorn main:app --port 8080
-```
+## Security Notes
 
-### Adding New Security Rules
-1. Edit `API-gateway/owasp_rules.py`
-2. Add patterns to `API-gateway/regex_rules.py`
-3. Rebuild containers: `docker-compose build`
+This system is designed for threat detection and includes:
+- Real-time payload analysis using machine learning
+- MongoDB logging for audit trails  
+- ChromaDB vector database for intelligent pattern matching
+- CSV-based threat intelligence integration
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
+Ensure proper network security when deploying in production environments.
 5. Open a Pull Request
 
 ## 📄 License
@@ -225,9 +345,10 @@ curl -X POST http://localhost:8000/check_payload -H "Content-Type: application/j
 Send a request to any API-Gateway endpoint. The payload will be inspected and blocked/forwarded based on the RAG verdict.
 
 ### 5. Retrain the Vector DB
-Rebuild Qdrant index from the latest dataset:
+ChromaDB automatically handles vector indexing:
 ```sh
-curl -X POST http://localhost:8000/retrain
+# Vector database is automatically maintained
+# No manual retraining required
 ```
 
 ### 6. Check Logs
@@ -237,16 +358,13 @@ Malicious verdicts are logged in `assr/malicious_verdicts.log`.
 
 ## Deployment
 - Dockerfile and docker-compose.yml provided for containerized deployment.
-- Persistent volumes for Qdrant and logs.
+- Persistent volumes for ChromaDB and MongoDB data.
 
 ---
 
 ## Notes
-- Ensure ports 8000, 9000, and 6333 are open.
+- Ensure ports 8000 (RAG service) and 27017 (MongoDB) are open.
+- ChromaDB runs internally within the RAG service container.
 - For production, secure API keys and network.
 - Customize backend URLs in API-Gateway as needed.
 
----
-
-## Authors
-- Integration and automation by your team.

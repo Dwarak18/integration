@@ -20,6 +20,26 @@ services:
       start_period: 30s
     restart: unless-stopped
 
+  # MongoDB Database for logging
+  mongodb:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_DATABASE=threat_intelligence
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
   # RAG Service (ML-based payload analysis)
   rag-service:
     build: 
@@ -35,8 +55,14 @@ services:
       - PYTHONPATH=/app
       - CHROMA_HOST=chromadb
       - CHROMA_PORT=8000
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=admin123
+      - MONGODB_DATABASE=threat_intelligence
     depends_on:
       - chromadb
+      - mongodb
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
       interval: 30s
@@ -130,6 +156,8 @@ services:
 
 volumes:
   chromadb_data:
+  mongodb_data:
+  mongodb_config:
   rag_logs:
   security_logs:
   app_logs:
